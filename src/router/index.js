@@ -10,18 +10,12 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "home",
     component: Home,
     meta : {
       requiresGuest : true,
     }
   },
-  // {
-  //   path: "/about",
-  //   name: "About",
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/About.vue"),
-  // },
   {
     path: "/dashboard",
     name: "dashboard",
@@ -54,16 +48,12 @@ router.beforeEach((to, from, next) => {
     next(false);
   }
 
-  
-  
   if( localStorage.getItem('access_token') && localStorage.getItem('id_token') && localStorage.getItem('expires_at') ){
     let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
 
     routerAuthCheck = new Date().getTime() < expiresAt;  
+    Store.commit('setUserIsAuthenticated', routerAuthCheck); 
   }
-
-
-  Store.commit('setUserIsAuthenticated', routerAuthCheck); 
 
   if (requiresAuth) {  
     if(routerAuthCheck){
