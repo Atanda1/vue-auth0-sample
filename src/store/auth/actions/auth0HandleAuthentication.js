@@ -13,7 +13,7 @@ const auth0HandleAuthentication = (context) => {
       router.push({ name : "dashboard"})
     }
     else if (err) {
-      alert("There's is an issue with signing up", err)
+      console.log("There's is an issue. Try again.", err)
       router.replace({ name: "home" })
     }
   })
