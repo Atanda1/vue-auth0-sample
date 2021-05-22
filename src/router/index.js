@@ -60,7 +60,7 @@ router.beforeEach((to, from, next) => {
       next();
     }
     else{
-      router.replace('/');
+      Store.dispatch('logout');
     }
     
   }
