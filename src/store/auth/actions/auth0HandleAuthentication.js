@@ -4,7 +4,7 @@ const auth0HandleAuthentication = (context) => {
   context.state.auth0.parseHash((err, authResult) => {
     if (authResult && authResult.accessToken && authResult.idToken) {
       let expiresAt = JSON.stringify(
-        authResult.expiresIn * 1000 + new Date().getTime()
+        (authResult.expiresIn * 1000) + new Date().getTime()
       );
       // save the tokens locally
       localStorage.setItem("access_token", authResult.accessToken);
