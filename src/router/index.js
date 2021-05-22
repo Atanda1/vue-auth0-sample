@@ -52,8 +52,8 @@ router.beforeEach((to, from, next) => {
     let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
 
     routerAuthCheck = new Date().getTime() < expiresAt;  
-    Store.commit('setUserIsAuthenticated', routerAuthCheck); 
   }
+  Store.commit('setUserIsAuthenticated', routerAuthCheck); 
 
   if (requiresAuth) {  
     if(routerAuthCheck){
